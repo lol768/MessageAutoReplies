@@ -38,5 +38,4 @@ class AutoResponse extends XenForo_DataWriter {
     private function getAutoResponseModel() {
         return $this->getModelFromCache('MessageAutoReplies\Model\AutoResponse');
     }
-
 }
