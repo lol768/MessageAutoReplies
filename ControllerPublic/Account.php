@@ -3,6 +3,7 @@ namespace MessageAutoReplies\ControllerPublic;
 
 use XenForo_ControllerPublic_Account;
 use XenForo_ControllerResponse_Redirect;
+use XenForo_ControllerResponse_View;
 use XenForo_DataWriter;
 use XenForo_Input;
 use XenForo_Visitor;
@@ -25,6 +26,16 @@ class Account extends XFCP_Account {
             $dw->save();
 
             return $this->responseMessage($message);
+        }
+
+        return $response;
+    }
+
+    public function actionPersonalDetails() {
+        $response = parent::actionPersonalDetails();
+
+        if ($response instanceof XenForo_ControllerResponse_View) {
+            $response->subView->params['autoResponder'] = "abc";
         }
 
         return $response;

@@ -31,7 +31,7 @@
       <replace><![CDATA[<fieldset>
 		<dl class="ctrlUnit">
 			<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label></dt>
-			<dd><input type="text" name="auto_responder" id="ctrl_auto_responder" class="textCtrl" /></dd>
+			<dd>{xen:raw $autoResponderEditor}</dd>
 		</dl>
 </fieldset
 $0]]></replace>
