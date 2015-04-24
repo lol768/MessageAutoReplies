@@ -9,6 +9,7 @@
   <code_event_listeners>
     <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Account" description="Set auto-responder"/>
     <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountViewPublic" callback_method="callback" active="1" hint="XenForo_ViewPublic_Account_PersonalDetails" description="Inject BBCode editor"/>
+    <listener event_id="load_class" execute_order="10" callback_class="\MessageAutoReplies\Listener\Extend\ConversationController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Conversation" description="Override the message sending action for PMs"/>
   </code_event_listeners>
   <cron/>
   <email_templates/>
@@ -20,7 +21,10 @@
     <interface_groups/>
   </permissions>
   <phrases>
-    <phrase title="auto_responder" version_id="0" version_string="1.0"><![CDATA[Auto-response message]]></phrase>
+    <phrase title="auto_responder" version_id="0" version_string="1.0"><![CDATA[Auto-Responder Message]]></phrase>
+    <phrase title="auto_responder_explanation" version_id="0" version_string="1.0"><![CDATA[You can set this field if you'd like an automatic message sent in response to all incoming private messages. This might be useful if you're going on holiday or want to direct users to a specific place to get support.
+<br /><br />
+A blank message will disable this functionality.]]></phrase>
   </phrases>
   <route_prefixes/>
   <style_properties/>
@@ -30,10 +34,10 @@
       <find><![CDATA[<xen:hook name="account_personal_details_about">]]></find>
       <replace><![CDATA[<fieldset>
 		<dl class="ctrlUnit">
-			<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label></dt>
+			<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label><dfn>{xen:phrase you_may_use_bb_code}<br /> <br />{xen:phrase auto_responder_explanation}</dfn></dt>
 			<dd>{xen:raw $autoResponderEditor}</dd>
 		</dl>
-</fieldset
+</fieldset>
 $0]]></replace>
     </modification>
   </public_template_modifications>
