@@ -9,4 +9,4 @@ class AutoResponse extends XenForo_Model {
     public function getEntryByUserId($userId) {
         return $this->_getDb()->fetchOne('SELECT message_contents FROM xf_mar_messages WHERE user_id = ?', $userId);
     }
-} 
+}
