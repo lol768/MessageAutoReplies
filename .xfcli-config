@@ -1,0 +1,8 @@
+{
+  "addon": {
+    "id": "MessageAutoReplies",
+    "name": "MessageAutoReplies",
+    "namespace": "MessageAutoReplies",
+    "path": "library/MessageAutoReplies/"
+  }
+}
