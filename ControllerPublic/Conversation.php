@@ -45,11 +45,11 @@ class Conversation extends XFCP_Conversation {
      *
      * @param int $conversationId The conversation id.
      * @param string $message message to send.
-     * @param $sendingUser
+     * @param array $sendingUser The user info array.
      * @throws \Exception
      * @throws \XenForo_Exception
      */
-    private function insertConversationMessage($conversationId, $message, $sendingUser) {
+    private function insertConversationMessage($conversationId, $message, array $sendingUser) {
         $message = XenForo_Helper_String::autoLinkBbCode($message);
         $messageDw = XenForo_DataWriter::create('XenForo_DataWriter_ConversationMessage');
         $messageDw->setExtraData(XenForo_DataWriter_ConversationMessage::DATA_MESSAGE_SENDER, $sendingUser);
