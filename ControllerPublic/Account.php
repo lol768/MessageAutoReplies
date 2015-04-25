@@ -62,7 +62,7 @@ class Account extends XFCP_Account {
                 $dw->bulkSet($data);
                 $dw->save();
             } else {
-                $dw->setExistingData(["user_id" => $userId]);
+                $dw->setExistingData($userId);
                 $dw->bulkSet($data);
                 $dw->save();
             }
