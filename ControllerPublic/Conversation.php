@@ -33,7 +33,7 @@ class Conversation extends XFCP_Conversation {
             foreach ($recipients as $userId => $userInfo) {
                 $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId); // TODO: this is most likely not correct as i don't quite get how this works *yet*
                 if (!empty($autoReply)) {
-                    $this->insertConversationMessage($targetId, $autoReply, $userId);
+                    $this->insertConversationMessage($targetId, $autoReply, $userInfo);
                 }
             }
         }
