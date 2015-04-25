@@ -24,7 +24,7 @@ class AutoResponse extends XenForo_DataWriter {
         if (!$id = $this->_getExistingPrimaryKey($data, 'user_id')) {
             return false;
         }
-        return array('xf_mar_messages' => $this->getAutoResponseModel()->getEntryById($id));
+        return array('xf_mar_messages' => $this->getAutoResponseModel()->getEntryByUserId($id));
     }
 
     protected function _getUpdateCondition($tableName) {
