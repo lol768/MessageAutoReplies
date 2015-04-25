@@ -4,7 +4,7 @@ namespace MessageAutoReplies\Formatters;
 
 class FormatterCollection {
 
-    const FORMAT_PATTERN = "((\\{)(\\w*)(}))";
+    const FORMAT_PATTERN = "(?i)((?<!\\)\{(\w*)})";
 
     public $formatters;
 
