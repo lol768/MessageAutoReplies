@@ -29,6 +29,13 @@ class Conversation extends XFCP_Conversation {
                 // TODO: Use getAutoResponseModel() to see if the recipient has an auto response
                 // TODO: Send the auto response if there is one. $recipients is an array of user id to user info array.
                 // TODO: In PHP you can use foreach ($recipients as $userId => $userInfo)
+
+            foreach ($recipients as $userId => $userInfo) {
+                $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId); // TODO: this is most likely not correct as i don't quite get how this works *yet*
+                if (!empty($autoReply)) {
+                    $this->insertConversationMessage($targetId, $autoReply, $userId);
+                }
+            }
         }
         return $response;
     }
