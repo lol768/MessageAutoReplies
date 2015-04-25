@@ -5,8 +5,8 @@ use XenForo_ControllerPublic_Account;
 use XenForo_ControllerResponse_Redirect;
 use XenForo_ControllerResponse_View;
 use XenForo_DataWriter;
-use XenForo_Input;
 use XenForo_Visitor;
+use MessageAutoReplies\Formatters\Formatters;
 
 /**
  * @see XenForo_ControllerPublic_Account
