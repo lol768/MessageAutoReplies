@@ -26,7 +26,7 @@ class Account extends XFCP_Account {
         $response = parent::actionPersonalDetailsSave();
 
         if ($response instanceof XenForo_ControllerResponse_Redirect) {
-            $message = $this->getInput()->filterSingle("auto_responder", XenForo_Input::STRING);
+            $message = $this->getHelper('Editor')->getMessageText('auto_responder', $this->_input);
             $this->handleAutoResponseChange($message, $this->getVisitorUserId());
         }
 
@@ -42,11 +42,10 @@ class Account extends XFCP_Account {
      */
     private function handleAutoResponseChange($message, $userId) {
         $dw = $this->getAutoResponseDataWriter();
-        $hasPreviousEntry = $this->getAutoResponseModel()->getEntryByUserId($this->getVisitorUserId());
-
+        $previousEntry = $this->getAutoResponseModel()->getEntryByUserId($this->getVisitorUserId());
         if ($message == "") {
             // check to see if they already have an entry, if so remove it else skip
-            if ($hasPreviousEntry !== false) {
+            if ($previousEntry !== false) {
                 $dw->setExistingData(["user_id" => $userId]);
                 $dw->delete();
             }
@@ -58,7 +57,7 @@ class Account extends XFCP_Account {
                 "user_id" => $userId, "message_contents" => $message
             ];
 
-            if (!$hasPreviousEntry) {
+            if (empty($previousEntry)) {
                 $dw->bulkSet($data);
                 $dw->save();
             } else {
