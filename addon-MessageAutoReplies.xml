@@ -27,15 +27,24 @@
 <br /><br />
 A blank message will disable this functionality.]]></phrase>
   </phrases>
-  <route_prefixes/>
+  <route_prefixes>
+    <route_type type="public">
+      <prefix original_prefix="autoresponses" class="MessageAutoReplies\Routing\PublicRoutes" build_link="none"/>
+    </route_type>
+  </route_prefixes>
   <style_properties/>
-  <templates/>
+  <templates>
+    <template title="mar_formatters" version_id="0" version_string="1.0"><![CDATA[<xen:title>Variables</xen:title>
+<div class="section">
+    Hello World!
+</div>]]></template>
+  </templates>
   <public_template_modifications>
     <modification template="account_personal_details" modification_key="mar_account_personal_details" description="MessageAutoReplies" execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<xen:hook name="account_personal_details_about">]]></find>
       <replace><![CDATA[<fieldset>
 		<dl class="ctrlUnit">
-			<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label><dfn>{xen:phrase you_may_use_bb_code}<br /> <br />{xen:phrase auto_responder_explanation}</dfn></dt>
+<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label><dfn>{xen:phrase you_may_use_bb_code}<br /> <br />{xen:phrase auto_responder_explanation} <br /><a href="{xen:link autoresponses/formatters}" class="OverlayTrigger">Available variables</a></dfn></dt>
 			<dd>{xen:raw $autoResponderEditor}</dd>
 		</dl>
 </fieldset>
