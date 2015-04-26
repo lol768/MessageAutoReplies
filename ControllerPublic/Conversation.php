@@ -7,6 +7,7 @@ use XenForo_ControllerResponse_Redirect;
 use XenForo_DataWriter;
 use XenForo_DataWriter_ConversationMessage;
 use XenForo_Helper_String;
+use XenForo_Visitor;
 
 /**
  * @see XenForo_ControllerPublic_Conversation
@@ -25,15 +26,15 @@ class Conversation extends XFCP_Conversation {
             $targetId = ConversationUtil::getConversationIdFromUrl($target);
             $recipients = $this->getConversationModel()->getConversationRecipients($targetId);
 
-            // TODO: For each recipient...
-                // TODO: Use getAutoResponseModel() to see if the recipient has an auto response
-                // TODO: Send the auto response if there is one. $recipients is an array of user id to user info array.
-                // TODO: In PHP you can use foreach ($recipients as $userId => $userInfo)
+            $data = [
+                "sender" => XenForo_Visitor::getInstance()->toArray(),
+            ];
 
             foreach ($recipients as $userId => $userInfo) {
-                $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId); // TODO: this is most likely not correct as i don't quite get how this works *yet*
+                $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId);
                 if (!empty($autoReply)) {
-                    $this->insertConversationMessage($targetId, $autoReply, $userInfo);
+                    $formatted = \XenForo_Application::get("mar_formatters")->format($autoReply, $data);
+                    $this->insertConversationMessage($targetId, $formatted, $userInfo);
                 }
             }
         }

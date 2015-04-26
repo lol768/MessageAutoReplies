@@ -7,21 +7,27 @@ class FormatterCollection {
     const FORMAT_PATTERN = '(?i)((?<!\\\)\{(\w*)})';
 
     /** @var Formatter[] */
-    public $formatters;
+    public $formatters = array();
 
-    public function format($message) {
+    public function registerFormatter($name, $formatter) {
+        $this->formatters[$name] = $formatter;
+    }
+
+    public function format($message, $data) {
         preg_match_all(self::FORMAT_PATTERN, $message, $matches, PREG_PATTERN_ORDER);
 
-        foreach ($matches[1] as $match) {
-            $formatter = $this->formatters[$match];
+        foreach ($matches[1] as $index => $fullMatch) {
+            $partialMatch = $matches[2][$index];
 
-            if (empty($formatter))
+            $formatter = $this->formatters[$partialMatch];
+
+            if (empty($formatter)) {
                 continue;
+            }
 
-            // TODO: Remove these curly braces
-            str_replace("{" . $match . "}", $formatter->format(null), $message);
-
-            echo $match;
+            str_replace($fullMatch, $formatter->format($data), $message);
         }
+
+        return $message;
     }
 } 
