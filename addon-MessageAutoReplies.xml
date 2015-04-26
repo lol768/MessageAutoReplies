@@ -34,10 +34,36 @@ A blank message will disable this functionality.]]></phrase>
   </route_prefixes>
   <style_properties/>
   <templates>
-    <template title="mar_formatters" version_id="0" version_string="1.0"><![CDATA[<xen:title>Variables</xen:title>
+    <template title="mar_formatters" version_id="0" version_string="1.0"><![CDATA[<xen:require css="mar_formatters.css" />
+<xen:title>Variables</xen:title>
 <div class="section">
-    Hello World!
+	<div class="innerContent">
+		<p>You can insert a number of variables which the system will automatically replace for you. You can stop the system replacing a particular variable by prepending it with a backslash.</p>
+		<table class="dataTable">
+			<tbody>
+				<tr class="dataRow">
+					<th>Variable</th>
+					<th>Description</th>
+				</tr>
+				<tr class="dataRow">
+					<td>{username}</td>
+					<td>Inserts the sender's username</td>
+				</tr>
+				<tr class="dataRow">
+					<td>{user_id}</td>
+					<td>Inserts the sender's user ID</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
 </div>]]></template>
+    <template title="mar_formatters.css" version_id="0" version_string="1.0"><![CDATA[div.section {
+    background-color: {xen:property contentBackground} !important;
+}
+
+div.innerContent {
+    padding: 0.5em !important;
+}]]></template>
   </templates>
   <public_template_modifications>
     <modification template="account_personal_details" modification_key="mar_account_personal_details" description="MessageAutoReplies" execution_order="10" enabled="1" action="str_replace">
