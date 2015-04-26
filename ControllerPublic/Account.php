@@ -26,7 +26,7 @@ class Account extends XFCP_Account {
         $response = parent::actionPersonalDetailsSave();
 
         if ($response instanceof XenForo_ControllerResponse_Redirect) {
-            $message = $this->getHelper('Editor')->getMessageText('auto_responder', $this->_input);
+            $message = $this->getEditorHelper()->getMessageText('auto_responder', $this->_input);
             $this->handleAutoResponseChange($message, $this->getVisitorUserId());
         }
 
@@ -118,5 +118,12 @@ class Account extends XFCP_Account {
      */
     private function getVisitorUserId() {
         return XenForo_Visitor::getUserId();
+    }
+
+    /**
+     * @return \XenForo_ControllerHelper_Editor
+     */
+    protected function getEditorHelper() {
+        return $this->getHelper('Editor');
     }
 } 
