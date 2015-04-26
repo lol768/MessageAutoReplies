@@ -4,7 +4,7 @@ namespace MessageAutoReplies\Formatters;
 
 class FormatterCollection {
 
-    const FORMAT_PATTERN = '(?i)((?<!\\\)\{(\w*)})';
+    const FORMAT_PATTERN = '/(?i)((?<!\\\)\{(\w*)})/';
 
     /** @var Formatter[] */
     public $formatters = array();
@@ -19,13 +19,15 @@ class FormatterCollection {
         foreach ($matches[1] as $index => $fullMatch) {
             $partialMatch = $matches[2][$index];
 
-            $formatter = $this->formatters[$partialMatch];
+            if (array_key_exists($partialMatch, $this->formatters)) {
+                $formatter = $this->formatters[$partialMatch];
 
-            if (empty($formatter)) {
-                continue;
+                if (empty($formatter)) {
+                    continue;
+                }
+
+                $message = str_replace($fullMatch, $formatter->format($data), $message);
             }
-
-            str_replace($fullMatch, $formatter->format($data), $message);
         }
 
         return $message;
