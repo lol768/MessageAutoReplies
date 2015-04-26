@@ -7,7 +7,7 @@ interface Formatter {
     /** Data is an array:
      *
      * $data = [
-     *     "recipient" => $recipientUserInfo
+     *     "sender" => $senderUserInfo
      * ]
      *
      * @param $data
