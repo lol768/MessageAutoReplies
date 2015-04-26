@@ -6,6 +6,7 @@ class FormatterCollection {
 
     const FORMAT_PATTERN = '(?i)((?<!\\\)\{(\w*)})';
 
+    /** @var Formatter[] */
     public $formatters;
 
     public function format($message) {
