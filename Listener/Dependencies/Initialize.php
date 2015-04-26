@@ -20,6 +20,12 @@ class Initialize {
         };
         $formatterCollection->registerFormatter("username", $usernameFormatter);
 
+        $userIdFormatter = new AnonymousFormatter();
+        $userIdFormatter->format = function($data) {
+            return $data['sender']['user_id'];
+        };
+        $formatterCollection->registerFormatter("user_id", $userIdFormatter);
+
         $fucksGivenFormatter = new AnonymousFormatter();
         $fucksGivenFormatter->format = function($data) {
             return 0;

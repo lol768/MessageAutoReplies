@@ -4,32 +4,32 @@ namespace MessageAutoReplies\Formatters;
 
 class FormatterCollection {
 
-    const FORMAT_PATTERN = '/(?i)((?<!\\\)\{(\w*)})/';
+    const FORMAT_PATTERN = '/((?<!\\\)\{(\w*)})/';
+    const ESCAPED_PATTERN = '/\\\({.*})/';
 
     /** @var Formatter[] */
     public $formatters = array();
+    private $data;
 
     public function registerFormatter($name, $formatter) {
         $this->formatters[$name] = $formatter;
     }
 
     public function format($message, $data) {
-        preg_match_all(self::FORMAT_PATTERN, $message, $matches, PREG_PATTERN_ORDER);
+        $this->data = $data;
 
-        foreach ($matches[1] as $index => $fullMatch) {
-            $partialMatch = $matches[2][$index];
+        $message = preg_replace_callback(self::FORMAT_PATTERN, [$this, "handleMatch"], $message);
 
-            if (array_key_exists($partialMatch, $this->formatters)) {
-                $formatter = $this->formatters[$partialMatch];
+        return preg_replace(self::ESCAPED_PATTERN, '$1', $message);
+    }
 
-                if (empty($formatter)) {
-                    continue;
-                }
+    protected function handleMatch(array $matches) {
+        $partialMatch = strtolower($matches[2]);
 
-                $message = str_replace($fullMatch, $formatter->format($data), $message);
-            }
+        if (array_key_exists($partialMatch, $this->formatters)) {
+            $formatter = $this->formatters[$partialMatch];
+            return $formatter->format($this->data);
         }
-
-        return $message;
+        return $matches[0];
     }
 } 
