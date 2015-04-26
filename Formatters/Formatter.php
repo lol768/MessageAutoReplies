@@ -3,7 +3,7 @@
 namespace MessageAutoReplies\Formatters;
 
 interface Formatter {
-    public function format($message, $data);
+    public function format($data);
 }
 
 

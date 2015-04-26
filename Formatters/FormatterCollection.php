@@ -18,7 +18,8 @@ class FormatterCollection {
             if (empty($formatter))
                 continue;
 
-            str_replace("{" . $match . "}", $formatter->format($message, null), $message);
+            // TODO: Remove these curly braces
+            str_replace("{" . $match . "}", $formatter->format(null), $message);
 
             echo $match;
         }
