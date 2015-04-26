@@ -1,8 +1,6 @@
 <?php
 
-
 namespace MessageAutoReplies\Test;
-
 
 use MessageAutoReplies\Util\ConversationUtil;
 use PHPUnit_Framework_TestCase;

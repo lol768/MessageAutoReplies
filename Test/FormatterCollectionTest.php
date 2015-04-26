@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MessageAutoReplies\Test;
 
 use MessageAutoReplies\Formatters\AnonymousFormatter;
