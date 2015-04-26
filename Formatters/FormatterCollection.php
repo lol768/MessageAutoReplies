@@ -4,14 +4,22 @@ namespace MessageAutoReplies\Formatters;
 
 class FormatterCollection {
 
-    const FORMAT_PATTERN = "((\\{)(\\w*)(}))";
+    const FORMAT_PATTERN = "(?i)((?<!\\)\{(\w*)})";
 
-    public static $formatters;
+    public $formatters;
 
-    public static function format($message) {
-        $offset = 0;
-        while(preg_match($message, self::formatPattern, $matches, PREG_OFFSET_CAPTURE, $offset)){
-            $offset = $matches[0][1] + strlen($matches[0][0]);
+    public function format($message) {
+        preg_match_all(self::FORMAT_PATTERN, $message, $matches, PREG_PATTERN_ORDER);
+
+        foreach ($matches[1] as $match) {
+            $formatter = $this->formatters[$match];
+
+            if (empty($formatter))
+                continue;
+
+            str_replace("{" . $match . "}", $formatter->format($message, null), $message);
+
+            echo $match;
         }
     }
 } 
