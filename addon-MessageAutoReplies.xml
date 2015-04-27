@@ -17,7 +17,9 @@
   <email_template_modifications/>
   <optiongroups/>
   <permissions>
-    <permission_groups/>
+    <permission_groups>
+      <permission_group permission_group_id="autoresponses"/>
+    </permission_groups>
     <permissions/>
     <interface_groups/>
   </permissions>
@@ -26,6 +28,7 @@
     <phrase title="auto_responder_explanation" version_id="0" version_string="1.0"><![CDATA[You can set this field if you'd like an automatic message sent in response to all incoming private messages. This might be useful if you're going on holiday or want to direct users to a specific place to get support.
 <br /><br />
 A blank message will disable this functionality.]]></phrase>
+    <phrase title="permission_group_autoresponses" version_id="2" version_string="1.2"><![CDATA[Auto-responses]]></phrase>
   </phrases>
   <route_prefixes>
     <route_type type="public">
