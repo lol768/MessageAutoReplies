@@ -19,6 +19,14 @@ class PublicRoutes {
         $path = explode("/", $routePath);
         if ($path[0] == "formatters") {
             return $router->getRouteMatch('MessageAutoReplies\ControllerPublic\Formatters', "showHelp");
+        } else if ($path[0] == "edit") {
+            if (count($path) == 2) {
+                if ($path[1] == "save") {
+                    return $router->getRouteMatch('MessageAutoReplies\ControllerPublic\Editor', "save");
+                }
+            } else {
+                return $router->getRouteMatch('MessageAutoReplies\ControllerPublic\Editor', "edit");
+            }
         }
     }
 } 

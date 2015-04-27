@@ -66,6 +66,21 @@ A blank message will disable this functionality.]]></phrase>
 div.innerContent {
     padding: 0.5em !important;
 }]]></template>
+    <template title="mar_message_edit" version_id="1" version_string="1.1"><![CDATA[<xen:require css="mar_message_edit.css" />
+<form class="xenForm" method="POST" action="{xen:link autoresponses/edit/save}">
+    <input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" /> <!-- must include this! -->
+    <fieldset>
+        <dl class="ctrlUnit">
+            <dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label><dfn>{xen:phrase you_may_use_bb_code}<br /> <br />{xen:phrase auto_responder_explanation} <br /><a href="{xen:link autoresponses/formatters}" class="OverlayTrigger">Available variables</a></dfn></dt>
+            <dd>{xen:raw $autoResponderEditor}</dd>
+        </dl>
+        <dl class="ctrlUnit submitUnit">
+	    <dt></dt>
+	    <dd><input name="save" value="Save Changes" accesskey="s" class="button primary" type="submit"></dd>
+        </dl>
+     </fieldset>
+</form>]]></template>
+    <template title="mar_message_edit.css" version_id="1" version_string="1.1"><![CDATA[fieldset{ border: none !important; }]]></template>
     <template title="mar_navigation_visitor_tab_links2" version_id="1" version_string="1.1"><![CDATA[<li><a href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
     <template title="mar_sidebar_link" version_id="1" version_string="1.1"><![CDATA[<li><a class="{xen:if "{$selectedKey} == 'autoresponses/edit'", 'secondaryContent', 'primaryContent'}" href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
   </templates>
