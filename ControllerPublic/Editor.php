@@ -3,7 +3,6 @@
 namespace MessageAutoReplies\ControllerPublic;
 
 use XenForo_ControllerPublic_Abstract;
-use XenForo_ControllerResponse_Redirect;
 use XenForo_DataWriter;
 use XenForo_Visitor;
 
@@ -29,7 +28,7 @@ class Editor extends XenForo_ControllerPublic_Abstract {
     public function actionSave() {
         $message = $this->getEditorHelper()->getMessageText('auto_responder', $this->_input);
         $this->handleAutoResponseChange($message, $this->getVisitorUserId());
-        return $this->responseRedirect(XenForo_ControllerResponse_Redirect::SUCCESS, \XenForo_Link::buildPublicLink("autoresponses/edit"));
+        return $this->responseMessage("Your changes have been saved.");
     }
 
     /**

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="MessageAutoReplies" title="MessageAutoReplies" version_string="1.1" version_id="1" url="https://github.com/lol768/MessageAutoReplies/" install_callback_class="MessageAutoReplies\Installer" install_callback_method="install" uninstall_callback_class="MessageAutoReplies\Installer" uninstall_callback_method="uninstall">
+<addon addon_id="MessageAutoReplies" title="MessageAutoReplies" version_string="1.2" version_id="2" url="https://github.com/lol768/MessageAutoReplies/" install_callback_class="MessageAutoReplies\Installer" install_callback_method="install" uninstall_callback_class="MessageAutoReplies\Installer" uninstall_callback_method="uninstall">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -8,8 +8,6 @@
   <code_events/>
   <code_event_listeners>
     <listener event_id="init_dependencies" execute_order="10" callback_class="\MessageAutoReplies\Listener\Dependencies\Initialize" callback_method="callback" active="1" hint="" description="Initialize dependencies"/>
-    <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Account" description="Set auto-responder"/>
-    <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountViewPublic" callback_method="callback" active="1" hint="XenForo_ViewPublic_Account_PersonalDetails" description="Inject BBCode editor"/>
     <listener event_id="load_class" execute_order="10" callback_class="\MessageAutoReplies\Listener\Extend\ConversationController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Conversation" description="Override the message sending action for PMs"/>
     <listener event_id="template_hook" execute_order="10" callback_class="MessageAutoReplies\Listener\Hook\ConversationSidebar" callback_method="hook" active="1" hint="account_wrapper_sidebar_conversations" description=""/>
     <listener event_id="template_hook" execute_order="10" callback_class="MessageAutoReplies\Listener\Hook\VisitorTabLinks" callback_method="hook" active="1" hint="navigation_visitor_tab_links2" description=""/>
@@ -67,7 +65,7 @@ div.innerContent {
     padding: 0.5em !important;
 }]]></template>
     <template title="mar_message_edit" version_id="1" version_string="1.1"><![CDATA[<xen:require css="mar_message_edit.css" />
-<form class="xenForm" method="POST" action="{xen:link autoresponses/edit/save}">
+<form class="xenForm AutoValidator" method="POST" action="{xen:link autoresponses/edit/save}">
     <input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" /> <!-- must include this! -->
     <fieldset>
         <dl class="ctrlUnit">
@@ -84,18 +82,7 @@ div.innerContent {
     <template title="mar_navigation_visitor_tab_links2" version_id="1" version_string="1.1"><![CDATA[<li><a href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
     <template title="mar_sidebar_link" version_id="1" version_string="1.1"><![CDATA[<li><a class="{xen:if "{$selectedKey} == 'autoresponses/edit'", 'secondaryContent', 'primaryContent'}" href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
   </templates>
-  <public_template_modifications>
-    <modification template="account_personal_details" modification_key="mar_account_personal_details" description="MessageAutoReplies" execution_order="10" enabled="1" action="str_replace">
-      <find><![CDATA[<xen:hook name="account_personal_details_about">]]></find>
-      <replace><![CDATA[<fieldset>
-		<dl class="ctrlUnit">
-<dt><label for="ctrl_auto_responder">{xen:phrase auto_responder}:</label><dfn>{xen:phrase you_may_use_bb_code}<br /> <br />{xen:phrase auto_responder_explanation} <br /><a href="{xen:link autoresponses/formatters}" class="OverlayTrigger">Available variables</a></dfn></dt>
-			<dd>{xen:raw $autoResponderEditor}</dd>
-		</dl>
-</fieldset>
-$0]]></replace>
-    </modification>
-  </public_template_modifications>
+  <public_template_modifications/>
   <bb_code_media_sites/>
   <bb_codes/>
 </addon>
