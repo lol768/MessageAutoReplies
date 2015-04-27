@@ -11,6 +11,8 @@
     <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Account" description="Set auto-responder"/>
     <listener event_id="load_class" execute_order="10" callback_class="MessageAutoReplies\Listener\Extend\AccountViewPublic" callback_method="callback" active="1" hint="XenForo_ViewPublic_Account_PersonalDetails" description="Inject BBCode editor"/>
     <listener event_id="load_class" execute_order="10" callback_class="\MessageAutoReplies\Listener\Extend\ConversationController" callback_method="callback" active="1" hint="XenForo_ControllerPublic_Conversation" description="Override the message sending action for PMs"/>
+    <listener event_id="template_hook" execute_order="10" callback_class="MessageAutoReplies\Listener\Hook\ConversationSidebar" callback_method="hook" active="1" hint="account_wrapper_sidebar_conversations" description=""/>
+    <listener event_id="template_hook" execute_order="10" callback_class="MessageAutoReplies\Listener\Hook\VisitorTabLinks" callback_method="hook" active="1" hint="navigation_visitor_tab_links2" description=""/>
   </code_event_listeners>
   <cron/>
   <email_templates/>
@@ -64,6 +66,8 @@ A blank message will disable this functionality.]]></phrase>
 div.innerContent {
     padding: 0.5em !important;
 }]]></template>
+    <template title="mar_navigation_visitor_tab_links2" version_id="1" version_string="1.1"><![CDATA[<li><a href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
+    <template title="mar_sidebar_link" version_id="1" version_string="1.1"><![CDATA[<li><a class="{xen:if "{$selectedKey} == 'autoresponses/edit'", 'secondaryContent', 'primaryContent'}" href="{xen:link autoresponses/edit}">{xen:phrase auto_responder}</a></li>]]></template>
   </templates>
   <public_template_modifications>
     <modification template="account_personal_details" modification_key="mar_account_personal_details" description="MessageAutoReplies" execution_order="10" enabled="1" action="str_replace">
