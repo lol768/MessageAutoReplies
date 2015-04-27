@@ -8,6 +8,10 @@ use XenForo_Visitor;
 
 class Editor extends XenForo_ControllerPublic_Abstract {
 
+    protected function _preDispatch($action) {
+        $this->_assertRegistrationRequired();
+    }
+
     public function actionEdit() {
         // Wrapping a view w/ the Account layout
         $viewData = array();
