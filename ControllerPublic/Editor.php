@@ -11,7 +11,7 @@ class Editor extends XenForo_ControllerPublic_Abstract {
     protected function _preDispatch($action) {
         $this->_assertRegistrationRequired();
 
-        if (!XenForo_Visitor::getInstance()->hasPermission("autoresponses", "Auto-responses")) {
+        if (!XenForo_Visitor::getInstance()->hasPermission("autoresponses", "autoresponses")) {
             throw $this->getNoPermissionResponseException();
         }
     }
