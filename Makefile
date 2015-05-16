@@ -5,6 +5,6 @@ all: addon-MessageAutoReplies.xml
 	rsync -av --exclude='upload' --exclude='vendor' --exclude='target' --exclude='.idea' --exclude='.git' . upload/library/MessageAutoReplies/; \
 	mkdir -p target; \
 	rm target/* -rf; \
-	zip -r target/MessageAutoReplies.zip upload addon-MessageAutoReplies.xml;
+	zip -r target/MessageAutoReplies.zip upload addon-MessageAutoReplies.xml LICENSE;
 tests:
 	vendor/bin/phpunit
