@@ -6,7 +6,7 @@
   <admin_templates/>
   <admin_template_modifications/>
   <code_events>
-    <event event_id="mar_setup_variable_formatters"><![CDATA[<p>Called when the system loads the collection of variable formatters.</p>
+    <event event_id="mar_setup_variable_formatters"><![CDATA[<p>Called when the system loads the collection of variable message formatters.</p>
 
 <p>Callback signature:</p>
 <blockquote><code><em>\MessageAutoReplies\Formatters\FormatterCollection</em> &$collection</code></blockquote>

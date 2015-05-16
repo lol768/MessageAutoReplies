@@ -1,4 +1,7 @@
 <?php
+
+// Provides auto-completion for IDEs
+
 namespace MessageAutoReplies\ControllerPublic;
 
 if (false) {

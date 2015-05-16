@@ -8,6 +8,10 @@ use MessageAutoReplies\Formatters\AnonymousFormatter;
 use MessageAutoReplies\Formatters\FormatterCollection;
 use XenForo_Dependencies_Abstract;
 
+/**
+ * Listener for dependencies callback.
+ * @package MessageAutoReplies\Listener\Dependencies
+ */
 class Initialize {
 
     public static function callback(XenForo_Dependencies_Abstract $dependencies, array $data) {
@@ -20,12 +24,14 @@ class Initialize {
         };
         $formatterCollection->registerFormatter("username", $usernameFormatter);
 
+        // User ID formatter
         $userIdFormatter = new AnonymousFormatter();
         $userIdFormatter->format = function($data) {
             return $data['sender']['user_id'];
         };
         $formatterCollection->registerFormatter("user_id", $userIdFormatter);
 
+        // Register the dependency
         \XenForo_Application::set("mar_formatters", $formatterCollection);
     }
 }

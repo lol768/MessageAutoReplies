@@ -4,6 +4,8 @@
 namespace MessageAutoReplies\Util;
 
 
+use MessageAutoReplies\Exception\InvalidConversationUrlException;
+
 class ConversationUtil {
 
     public static function getConversationIdFromUrl($url) {
@@ -11,7 +13,7 @@ class ConversationUtil {
         $matches = [];
         preg_match($regex, $url, $matches);
         if (count($matches) < 2) {
-            throw new \Exception("Too few matches!");
+            throw new InvalidConversationUrlException("Too few matches!");
         }
         return $matches[1];
     }

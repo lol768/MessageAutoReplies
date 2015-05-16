@@ -11,16 +11,16 @@ class FormatterCollectionTest extends PHPUnit_Framework_TestCase {
     public function testSimpleFormatter() {
         $fc = new FormatterCollection();
 
-        // Make a simple formatter which changes {project} to "MCExchange"
+        // Make a simple formatter which changes {project} to "SomeProject"
         $projectFormatter = new AnonymousFormatter();
         $projectFormatter->format = function($data) {
-            return "MCExchange";
+            return "SomeProject";
         };
 
         $fc->registerFormatter("project", $projectFormatter);
 
         $data = array();
-        $this->assertSame("Hello from MCExchange", $fc->format("Hello from {project}", $data));
+        $this->assertSame("Hello from SomeProject", $fc->format("Hello from {project}", $data));
     }
 
     public function testFormatterWithData() {
@@ -42,12 +42,12 @@ class FormatterCollectionTest extends PHPUnit_Framework_TestCase {
 
         $projectFormatter = new AnonymousFormatter();
         $projectFormatter->format = function($data) {
-            return "MCExchange";
+            return "SomeProject";
         };
 
         $fc->registerFormatter("project", $projectFormatter);
 
         $data = array();
-        $this->assertSame("Hello from {project} {unknown} MCExchange", $fc->format("Hello from \\{project} {unknown} {project}", $data));
+        $this->assertSame("Hello from {project} {unknown} SomeProject", $fc->format("Hello from \\{project} {unknown} {project}", $data));
     }
 }

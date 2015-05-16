@@ -1,2 +1,3 @@
 # MessageAutoReplies
-For @Captainbern &lt;3
+
+Auto-responder messages for XenForo.
