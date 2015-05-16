@@ -29,11 +29,12 @@ class Conversation extends XFCP_Conversation {
             $data = [
                 "sender" => XenForo_Visitor::getInstance()->toArray(),
             ];
-
+            $collection = \XenForo_Application::get("mar_formatters");
+            \XenForo_CodeEvent::fire('mar_setup_variable_formatters', array(&$collection));
             foreach ($recipients as $userId => $userInfo) {
                 $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId);
                 if (!empty($autoReply)) {
-                    $formatted = \XenForo_Application::get("mar_formatters")->format($autoReply, $data);
+                    $formatted = $collection->format($autoReply, $data);
                     $this->insertConversationMessage($targetId, $formatted, $userInfo);
                 }
             }
