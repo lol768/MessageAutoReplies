@@ -26,12 +26,6 @@ class Initialize {
         };
         $formatterCollection->registerFormatter("user_id", $userIdFormatter);
 
-        $fucksGivenFormatter = new AnonymousFormatter();
-        $fucksGivenFormatter->format = function($data) {
-            return 0;
-        };
-        $formatterCollection->registerFormatter("fucks_given", $fucksGivenFormatter);
-
         \XenForo_Application::set("mar_formatters", $formatterCollection);
     }
 }
