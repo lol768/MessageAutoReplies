@@ -13,7 +13,7 @@ class ConversationUtil {
         $matches = [];
         preg_match($regex, $url, $matches);
         if (count($matches) < 2) {
-            throw new InvalidConversationUrlException("Too few matches!");
+            throw new InvalidConversationUrlException("Too few matches! The original string passed in was '" . $url . "'");
         }
         return $matches[1];
     }
