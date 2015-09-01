@@ -8,8 +8,11 @@ use MessageAutoReplies\Exception\InvalidConversationUrlException;
 
 class ConversationUtil {
 
-    public static function getConversationIdFromUrl($url) {
+    public static function getConversationIdFromUrl($url, $shortIds=false) {
         $regex = "/conversations\\/.*\\.([0-9]+)\\//";
+        if ($shortIds) {
+            $regex = "/conversations\\/([0-9]+)\\//";
+        }
         $matches = [];
         preg_match($regex, $url, $matches);
         if (count($matches) < 2) {

@@ -25,4 +25,9 @@ class ConversationUtilTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(15, ConversationUtil::getConversationIdFromUrl($url));
     }
 
+    public function testConversationLinkExtractorWithIdsOnly() {
+        $url = "http://127.0.0.1/xf_latest/index.php?conversations/15/";
+        $this->assertEquals(15, ConversationUtil::getConversationIdFromUrl($url, true));
+    }
+
 }

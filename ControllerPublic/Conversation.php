@@ -23,7 +23,8 @@ class Conversation extends XFCP_Conversation {
         $response = parent::actionInsert();
         if ($response instanceof XenForo_ControllerResponse_Redirect) {
             $target = $response->redirectTarget;
-            $targetId = ConversationUtil::getConversationIdFromUrl($target);
+            $useShortUrls = !\XenForo_Application::getOptions()->get("includeTitleInUrls");
+            $targetId = ConversationUtil::getConversationIdFromUrl($target, $useShortUrls);
             $recipients = $this->getConversationModel()->getConversationRecipients($targetId);
 
             $data = [

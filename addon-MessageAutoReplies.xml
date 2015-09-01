@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="MessageAutoReplies" title="MessageAutoReplies" version_string="1.2" version_id="2" url="https://github.com/lol768/MessageAutoReplies/" install_callback_class="MessageAutoReplies\Installer" install_callback_method="install" uninstall_callback_class="MessageAutoReplies\Installer" uninstall_callback_method="uninstall">
+<addon addon_id="MessageAutoReplies" title="MessageAutoReplies" version_string="1.2.1" version_id="3" url="https://github.com/lol768/MessageAutoReplies/" install_callback_class="MessageAutoReplies\Installer" install_callback_method="install" uninstall_callback_class="MessageAutoReplies\Installer" uninstall_callback_method="uninstall">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
   <admin_templates/>
   <admin_template_modifications/>
   <code_events>
-    <event event_id="mar_setup_variable_formatters"><![CDATA[<p>Called when the system loads the collection of variable message formatters.</p>
+    <event event_id="mar_setup_variable_formatters"><![CDATA[<p>Called when the system loads the collection of variable formatters.</p>
 
 <p>Callback signature:</p>
 <blockquote><code><em>\MessageAutoReplies\Formatters\FormatterCollection</em> &$collection</code></blockquote>
