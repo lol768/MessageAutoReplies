@@ -56,6 +56,7 @@ class Conversation extends XFCP_Conversation {
         $message = XenForo_Helper_String::autoLinkBbCode($message);
         $messageDw = XenForo_DataWriter::create('XenForo_DataWriter_ConversationMessage');
         $messageDw->setExtraData(XenForo_DataWriter_ConversationMessage::DATA_MESSAGE_SENDER, $sendingUser);
+        $messageDw->setOption(XenForo_DataWriter_ConversationMessage::OPTION_SET_IP_ADDRESS, false);
         $messageDw->set('conversation_id', $conversationId);
         $messageDw->set('user_id', $sendingUser['user_id']);
         $messageDw->set('username', $sendingUser['username']);
