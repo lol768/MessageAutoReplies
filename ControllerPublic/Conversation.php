@@ -33,6 +33,9 @@ class Conversation extends XFCP_Conversation {
             $collection = \XenForo_Application::get("mar_formatters");
             \XenForo_CodeEvent::fire('mar_setup_variable_formatters', array(&$collection));
             foreach ($recipients as $userId => $userInfo) {
+                if ($userId == $data['sender']['user_id']) {
+                    continue;
+                }
                 $autoReply = $this->getAutoResponseModel()->getEntryByUserId($userId);
                 if (!empty($autoReply)) {
                     $formatted = $collection->format($autoReply, $data);
