@@ -15,7 +15,7 @@ class Installer {
     public static function install() {
         /** @var \Zend_Db_Adapter_Abstract $db */
         $db = XenForo_Application::get('db');
-        $db->query("CREATE TABLE IF NOT EXISTS xf_mar_messages (user_id INT UNSIGNED NOT NULL UNIQUE PRIMARY KEY, message_contents TEXT NOT NULL)");
+        $db->query("CREATE TABLE IF NOT EXISTS xf_mar_messages (user_id INT UNSIGNED NOT NULL UNIQUE PRIMARY KEY, message_contents TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL)");
     }
 
     /**
